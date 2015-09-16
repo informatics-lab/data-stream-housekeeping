@@ -4,6 +4,7 @@
 """
 
 import os, time, sys
+import os.path
 
 MAX_FILE_AGE = 24 * 60 * 60 # In seconds
 SLEEP_TIME = 15 * 60 # In seconds
@@ -15,7 +16,7 @@ def main():
         f = os.path.join(PATH, f)
         if os.stat(f).st_mtime < NOW - MAX_FILE_AGE:
             if os.path.isfile(f):
-                os.remove(os.path.join(path, f))
+                os.remove(os.path.join(PATH, f))
 
     time.sleep(SLEEP_TIME)
 
