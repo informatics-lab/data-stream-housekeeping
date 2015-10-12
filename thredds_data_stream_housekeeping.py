@@ -6,13 +6,15 @@
 import os, time, sys
 import os.path
 
-MAX_FILE_AGE = 24 * 60 * 60 # In seconds
+MAX_FILE_AGE = os.getenv("MAX_FILE_AGE") or (24 * 60 * 60) # In seconds
 SLEEP_TIME = 15 * 60 # In seconds
 PATH = os.getenv('DATA_DIR')
 NOW = time.time()
+exceptions = os.getenv("EXCEPTIONS") ? os.getenv("EXCEPTIONS").split(",") : []
 
 def main():
-    for f in os.listdir(PATH):
+    files_to_check = [f for f in os.listdir(PATH) if f not in exceptions:
+    for f in files_to_check:
         f = os.path.join(PATH, f)
         if os.stat(f).st_mtime < NOW - MAX_FILE_AGE:
             if os.path.isfile(f):
