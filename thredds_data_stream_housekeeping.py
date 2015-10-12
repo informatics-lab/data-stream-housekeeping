@@ -13,7 +13,7 @@ NOW = time.time()
 exceptions = os.getenv("EXCEPTIONS") ? os.getenv("EXCEPTIONS").split(",") : []
 
 def main():
-    files_to_check = [f for f in os.listdir(PATH) if f not in exceptions:
+    files_to_check = [f for f in os.listdir(PATH) if f not in exceptions]
     for f in files_to_check:
         f = os.path.join(PATH, f)
         if os.stat(f).st_mtime < NOW - MAX_FILE_AGE:
