@@ -14,14 +14,16 @@ exceptions = os.getenv("EXCEPTIONS") ? os.getenv("EXCEPTIONS").split(",") : []
 
 def main():
     files_to_check = [f for f in os.listdir(PATH) if f not in exceptions]
+    print "Ignoring", exceptions
     for f in files_to_check:
         f = os.path.join(PATH, f)
         if os.stat(f).st_mtime < NOW - MAX_FILE_AGE:
             if os.path.isfile(f):
                 file_to_remove = os.path.join(PATH, f)
-                print "Removing " + file_to_remove
+                print "Removing", file_to_remove
                 os.remove(file_to_remove)
 
+    print "Done, sleeping for", SLEEP_TIME, "seconds"
     time.sleep(SLEEP_TIME)
 
 
