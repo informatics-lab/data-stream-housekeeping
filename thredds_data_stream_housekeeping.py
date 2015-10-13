@@ -10,7 +10,7 @@ MAX_FILE_AGE = int(os.getenv("MAX_FILE_AGE")) or (24 * 60 * 60) # In seconds
 SLEEP_TIME = int(os.getenv("SLEEP_TIME")) or (15 * 60) # In seconds
 PATH = os.getenv('DATA_DIR')
 NOW = time.time()
-exceptions = os.getenv("EXCEPTIONS") ? os.getenv("EXCEPTIONS").split(",") : []
+exceptions = os.getenv("EXCEPTIONS").split(",") if os.getenv("EXCEPTIONS") else []
 
 def main():
     files_to_check = [f for f in os.listdir(PATH) if f not in exceptions]
