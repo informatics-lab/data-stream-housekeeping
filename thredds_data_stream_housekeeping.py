@@ -6,8 +6,8 @@
 import os, time, sys
 import os.path
 
-MAX_FILE_AGE = int(os.getenv("MAX_FILE_AGE")) or (24 * 60 * 60) # In seconds
-SLEEP_TIME = int(os.getenv("SLEEP_TIME")) or (15 * 60) # In seconds
+MAX_FILE_AGE = int(os.getenv("MAX_FILE_AGE") or (24 * 60 * 60)) # In seconds
+SLEEP_TIME = int(os.getenv("SLEEP_TIME") or (15 * 60)) # In seconds
 PATH = os.getenv('DATA_DIR')
 NOW = time.time()
 exceptions = os.getenv("EXCEPTIONS").split(",") if os.getenv("EXCEPTIONS") else []
